@@ -60,12 +60,12 @@ def detect(imgpath, target):
     # cv.waitKey(0)
     xret = selEllipses[0][0][0];
     yret = selEllipses[0][0][1];
-    k = selEllipses[0][1][0]/selEllipses[0][1][1];
-    print(k)
+    k = selEllipses[0][1][1]/selEllipses[0][1][0];
+    # print(k)
 
     w = selEllipses[0][2]*3.14/180
-    al = math.sqrt(((math.cos(w)*math.cos(w)*(k*k-1))/(pow(math.sin(w),2)*(1-k*k)-1)))
-    be = math.sqrt((math.sin(w)*math.sin(w)*(1-k*k)))
+    al = math.sqrt(-((math.cos(w)*math.cos(w)*(k*k-1))/(pow(math.sin(w),2)*(1-k*k)-1)))
+    be = math.sqrt(-(math.sin(w)*math.sin(w)*(1-k*k)))
     op.write(str(math.asin(al)*180/3.14) + "," + str(math.asin(be)*180/3.14) + "," + str(target) + "\n")
 
     # print("a, b: ", math.asin(al)*180/3.14, ", ", math.asin(be)*180/3.14, "\n")
@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
     dataframe = pd.read_csv("op2.txt", delimiter=',')
     
-    dataframe.to_csv('op2.csv', index = None,)
+    dataframe.to_csv('op2.csv', index = None)
 
     
     # xr,yr,iw = detect(imgcam2)
